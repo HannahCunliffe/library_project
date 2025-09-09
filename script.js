@@ -1,4 +1,10 @@
 const myLibrary = [];
+//locate and store container used for generated page content
+const pageContent = document.getElementById("pageContent")
+//create container element for the library book entries, and adds it the webpage
+const containerDiv = document.createElement("div");
+containerDiv.classList.add("container");
+pageContent.appendChild(containerDiv);
 
 function Book(title, author, pages, year) {
     this.id = crypto.randomUUID();
@@ -15,11 +21,6 @@ function addBookToLibrary() {
 };
 
 function displayLibrary() {
-    //create container element for the library book entries, and adds it the webpage
-    const containerDiv = document.createElement("div");
-    containerDiv.classList.add("container");
-    document.body.appendChild(containerDiv);
-
     //creates an entry for each book in the library array
     //then creates elements to display information from each entry
     myLibrary.forEach((book) => {
@@ -57,7 +58,7 @@ function populateLibrary() {
     let book3 = new Book("The Return of the King", "J. R. R. Tolkien", 416, 1955);
 
     myLibrary.push(book1, book2, book3);
-}
+};
 
 //runs the populate then display function on page load
 populateLibrary();

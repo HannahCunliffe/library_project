@@ -1,11 +1,64 @@
-.container {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+}
+
+#pageContent {
     display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.pageHeading {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    padding-top: 100px;
+    gap: 50px;
+    background-color: #43B15D;
+    align-items: center;
+    border-right: 2px solid #2F3337;
+}
+
+#btnAdd {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    border: 1px solid #2F3337;
+    border-radius: 5px;
+    font-size: 16px
+}
+
+#btnAdd svg {
+    height: 30px;
+    width: auto;
+}
+
+.container {
+    flex: 3 1 auto;
+    display: flex;
+    padding-top: 100px;
     gap: 20px;
+    justify-content: center;
+    background-color: #F4F5F6;
 }
 
 .book {
-    width: 200px;
+    width: 300px;
     height: 200px;
-    background-color: bisque;
+    background-color: #43B15D;
+    border-radius: 15px;
     padding: 40px;
+    border: 2px solid #2F3337;
+}
+
+button {
+    background-color: #579F3C;
 }
