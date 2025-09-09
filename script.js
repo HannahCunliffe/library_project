@@ -6,6 +6,21 @@ const containerDiv = document.createElement("div");
 containerDiv.classList.add("container");
 pageContent.appendChild(containerDiv);
 
+//queryselector for page and form buttons
+const btnAdd = document.getElementById("btnAdd");
+const btnSubmit = document.getElementById("btnSubmit");
+const btnClose = document.getElementById("btnClose");
+const dialog = document.getElementById("form");
+
+//add event listeners for buttons
+btnAdd.addEventListener("click", () => {
+    dialog.showModal();
+});
+
+btnClose.addEventListener("click", () => {
+    dialog.close();
+});
+
 function Book(title, author, pages, year) {
     this.id = crypto.randomUUID();
     this.title = title;
