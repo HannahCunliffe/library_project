@@ -26,7 +26,7 @@ body {
     border-right: 2px solid #2F3337;
 }
 
-#btnAdd {
+#btnAdd, #form button {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -63,7 +63,41 @@ button {
     background-color: #579F3C;
 }
 
-.form {
+#form {
     background-color:  #F4F5F6;
-   
+    width: 80vw;
+    height: 100vh;
+    margin: 10px auto;
+    padding: 200px;
+    font-size: 20px;
+}
+
+#form fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 80px;
+}
+
+#form fieldset legend {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+#form fieldset div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#form fieldset div input {
+    font-size: 18px;
+    padding: 10px 20px;
+}
+
+#form div {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 80px;
 }

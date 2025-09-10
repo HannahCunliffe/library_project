@@ -24,17 +24,30 @@
     </div>
     <dialog id="form">
         <form action="">
-            <label for="bookName">Book Name:</label>
-            <input type="text" name="bookName" id="bookName">
-            <label for="bookAuthor">Author:</label>
-            <input type="text" name="bookAuthor" id="bookAuthor">
-            <label for="pages">Number of pages:</label>
-            <input type="number" name="pages" id="pages">
-            <label for="date">Release Year:</label>
-            <input type="number" name="date" id="date">
-            <button id="btnSubmit">Submit</button>
+            <fieldset>
+                <legend>Book Information:</legend>
+                <div>
+                    <label for="bookName">Book Name:</label>
+                    <input type="text" name="bookName" id="bookName">
+                </div>
+                <div>
+                    <label for="bookAuthor">Author:</label>
+                    <input type="text" name="bookAuthor" id="bookAuthor">
+                </div>
+                <div>
+                    <label for="pages">Number of pages:</label>
+                    <input type="number" name="pages" id="pages">
+                </div>
+                <div>
+                    <label for="date">Release Year:</label>
+                    <input type="number" name="date" id="date">
+                </div>
+            </fieldset>
+            <div>
+                <button id="btnSubmit">Submit</button>
+                <button id="btnClose">Close</button>
+            </div>
         </form>
-        <button id="btnClose">Close</button>
     </dialog>
 </body>
 
