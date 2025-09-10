@@ -36,6 +36,11 @@ body {
     font-size: 16px
 }
 
+#form button {
+    font-size: 18px;
+    font-weight: 600;
+}
+
 #btnAdd svg {
     height: 30px;
     width: auto;
@@ -46,8 +51,9 @@ body {
     display: flex;
     padding-top: 100px;
     gap: 20px;
-    justify-content: center;
+    justify-content: space-evenly;
     background-color: #F4F5F6;
+    flex-wrap: wrap;
 }
 
 .book {
@@ -75,13 +81,14 @@ button {
 #form fieldset {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 30px;
     padding: 80px;
 }
 
 #form fieldset legend {
-    font-size: 22px;
-    font-weight: 600;
+    font-size: 25px;
+    font-weight: 700;
 }
 
 #form fieldset div {
@@ -90,9 +97,14 @@ button {
     gap: 5px;
 }
 
+#form fieldset div label {
+    font-weight: 600;
+}
+
 #form fieldset div input {
     font-size: 18px;
-    padding: 10px 20px;
+    padding: 5px 10px;
+    width: min(80vw, 400px)
 }
 
 #form div {

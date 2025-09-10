@@ -11,6 +11,7 @@ const btnAdd = document.getElementById("btnAdd");
 const btnSubmit = document.getElementById("btnSubmit");
 const btnClose = document.getElementById("btnClose");
 const dialog = document.getElementById("form");
+const form = document.getElementById("formElement");
 
 //add event listeners for buttons
 btnAdd.addEventListener("click", () => {
@@ -21,6 +22,28 @@ btnClose.addEventListener("click", () => {
     dialog.close();
 });
 
+//adds an event listener that stops the form being submitted to a server when button pressed
+//as this project has no server
+btnSubmit.addEventListener("click", bookSubmit, false);
+
+function bookSubmit(event) {
+    //prevents default form submitting behaviour on button press
+    event.preventDefault();
+
+    //retrieve user input from form fields
+    let bookName = form.elements['bookName'].value;
+    let bookAuthor = form.elements['bookAuthor'].value;
+    let pages = form.elements['pages'].value;
+    let date = form.elements['date'].value;
+
+    //run function to create book from input
+    addBookToLibrary(bookName, bookAuthor, pages, date);
+
+    //close form dialog, and reset form fields back to empty
+    dialog.close();
+    form.reset();
+}
+
 function Book(title, author, pages, year) {
     this.id = crypto.randomUUID();
     this.title = title;
@@ -29,13 +52,22 @@ function Book(title, author, pages, year) {
     this.year = year;
 };
 
-function addBookToLibrary() {
-    let book = new Book("title", "author", 223, 2025);
+function addBookToLibrary(title, author, pages, date) {
+    //create new book from constructor
+    let book = new Book(title, author, pages, date);
 
+    //add to library, refresh site display to update with new library contents
     myLibrary.push(book);
+    displayLibrary();
 };
 
 function displayLibrary() {
+    //clears existing entries in-case this function is being called after library has
+    //already been populated, i.e preventing duplicate displays
+    while (containerDiv.hasChildNodes()) {
+        containerDiv.removeChild(containerDiv.children[0]);
+    };
+
     //creates an entry for each book in the library array
     //then creates elements to display information from each entry
     myLibrary.forEach((book) => {
