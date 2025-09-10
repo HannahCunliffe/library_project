@@ -94,6 +94,11 @@ function displayLibrary() {
         bookYear.textContent = book.year;
         bookElement.appendChild(bookYear);
 
+        //adds an id to each book display identical to the unique id generated on 
+        // object creation for each book
+        // will allow identification of specific books for manipulation purposes (i.e deletion)
+        bookElement.id = book.id;
+
         containerDiv.appendChild(bookElement);
     })
 };
