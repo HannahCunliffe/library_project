@@ -1,4 +1,4 @@
-const myLibrary = [];
+let myLibrary = [];
 //locate and store container used for generated page content
 const pageContent = document.getElementById("pageContent")
 //create container element for the library book entries, and adds it the webpage
@@ -50,6 +50,15 @@ function Book(title, author, pages, year) {
     this.author = author;
     this.pages = pages;
     this.year = year;
+    this.read = false;
+};
+
+Book.prototype.toggleRead = function() {
+    if (this.read == true) {
+        this.read = false;
+    } else {
+        this.read = true;
+    };
 };
 
 function addBookToLibrary(title, author, pages, date) {
@@ -94,17 +103,70 @@ function displayLibrary() {
         bookYear.textContent = book.year;
         bookElement.appendChild(bookYear);
 
-        //adds an id to each book display identical to the unique id generated on 
+        //create container for buttons
+        let btnContainer = document.createElement("div");
+        btnContainer.classList.add("btnContainer");
+
+         //adds an id to each book display identical to the unique id generated on 
         // object creation for each book
         // will allow identification of specific books for manipulation purposes (i.e deletion)
-        bookElement.id = book.id;
+        btnContainer.id = book.id;
 
+        bookElement.appendChild(btnContainer);
+
+        //create read button, and set it to toggle book read status on click
+        let btnRead = document.createElement("button");
+        //changes button text and appearance based on book's read status
+        if (book.read == false) {
+            btnRead.textContent = "Unread";
+            btnRead.dataset.read = "unread";
+        } else {
+            btnRead.textContent = "Read";
+            btnRead.dataset.read = "read";
+        }
+
+        btnRead.classList.add("btnRead");
+        btnRead.addEventListener("click", readToggle);
+        btnContainer.appendChild(btnRead);
+
+        //create remove button and set remove function to trigger on click
         let btnRemove = document.createElement("button");
         btnRemove.textContent = "Remove";
-        bookElement.appendChild(btnRemove);
+        btnRemove.addEventListener("click", removeBook);
+        btnContainer.appendChild(btnRemove);
 
         containerDiv.appendChild(bookElement);
     })
+};
+
+function removeBook(event) {
+    //retrieves id of selected book by pulling the id of the clicked button's parent
+    let bookID = event.target.parentElement.id;
+
+    //filters through library to not include any book matching the selected book id
+    myLibrary = myLibrary.filter((book) => book.id != bookID);
+
+    //refreshes the library display to update with book removal
+    displayLibrary();
+};
+
+function readToggle(event) {
+    //retrieve id for selected book
+    let bookID = event.target.parentElement.id;
+
+    //find index of book to modify in library
+    let bookIndex = myLibrary.map(book => book.id).indexOf(bookID);
+
+    myLibrary[bookIndex].toggleRead();
+
+    if (myLibrary[bookIndex].read == true) {
+        event.target.textContent = "Read";
+        event.target.dataset.read = "read";
+    } else {
+        event.target.textContent = "Unread";
+        event.target.dataset.read = "unread";
+    };
+
 };
 
 //pre-populates the library array with some example books to show on page load

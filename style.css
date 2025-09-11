@@ -65,20 +65,34 @@ body {
     border: 2px solid #2F3337;
     display: flex;
     flex-direction: column;
-    
+}
+
+.btnContainer {
+    padding-top: 30px;
+    justify-content: space-between;
+    display: flex;
+    gap: 20px
 }
 
 .book button {
-    margin-top: 30px;
-    align-self: flex-end;
-    font-size: 12px;
+    font-size: 13px;
     padding: 5px 10px;
     border: 1px solid #2F3337;
     border-radius: 5px;
+    background-color: #06ca78;
+    font-weight: 700;
 }
 
 button {
     background-color: #579F3C;
+}
+
+.btnRead[data-read="unread"] {
+    background-color: rgb(255, 189, 7);
+}
+
+.btnRead[data-read="read"] {
+    background-color: greenyellow;
 }
 
 #form {
