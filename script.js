@@ -99,6 +99,10 @@ function displayLibrary() {
         // will allow identification of specific books for manipulation purposes (i.e deletion)
         bookElement.id = book.id;
 
+        let btnRemove = document.createElement("button");
+        btnRemove.textContent = "Remove";
+        bookElement.appendChild(btnRemove);
+
         containerDiv.appendChild(bookElement);
     })
 };
