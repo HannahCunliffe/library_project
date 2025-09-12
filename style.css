@@ -58,13 +58,26 @@ body {
 
 .book {
     width: 300px;
-    height: 200px;
+    height: 250px;
     background-color: #43B15D;
     border-radius: 15px;
     padding: 40px;
     border: 2px solid #2F3337;
     display: flex;
     flex-direction: column;
+}
+
+.bookInfo {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.title {
+    font-weight: 600;
+}
+
+.author {
+    font-style: italic;
 }
 
 .btnContainer {

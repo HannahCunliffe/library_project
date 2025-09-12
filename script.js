@@ -84,22 +84,22 @@ function displayLibrary() {
         bookElement.classList.add("book");
 
         let bookTitle = document.createElement("p");
-        bookTitle.classList.add("title");
+        bookTitle.classList.add("title", "bookInfo");
         bookTitle.textContent = book.title;
         bookElement.appendChild(bookTitle);
 
         let bookAuthor = document.createElement("p");
-        bookAuthor.classList.add("author");
+        bookAuthor.classList.add("author", "bookInfo");
         bookAuthor.textContent = `By ${book.author}`;
         bookElement.appendChild(bookAuthor);
 
         let bookPages = document.createElement("p");
-        bookPages.classList.add("pages")
+        bookPages.classList.add("pages", "bookInfo")
         bookPages.textContent = `${book.pages} pages`;
         bookElement.appendChild(bookPages);
 
         let bookYear = document.createElement("p");
-        bookYear.classList.add("year");
+        bookYear.classList.add("year", "bookInfo");
         bookYear.textContent = book.year;
         bookElement.appendChild(bookYear);
 
@@ -123,7 +123,7 @@ function displayLibrary() {
         } else {
             btnRead.textContent = "Read";
             btnRead.dataset.read = "read";
-        }
+        };
 
         btnRead.classList.add("btnRead");
         btnRead.addEventListener("click", readToggle);
