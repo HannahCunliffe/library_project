@@ -1,4 +1,4 @@
-let myLibrary = [];
+// let myLibrary = [];
 //locate and store container used for generated page content
 const pageContent = document.getElementById("pageContent")
 //create container element for the library book entries, and adds it the webpage
@@ -44,29 +44,73 @@ function bookSubmit(event) {
     form.reset();
 }
 
-function Book(title, author, pages, year) {
-    this.id = crypto.randomUUID();
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.year = year;
-    this.read = false;
-};
+// function Book(title, author, pages, year) {
+//     this.id = crypto.randomUUID();
+//     this.title = title;
+//     this.author = author;
+//     this.pages = pages;
+//     this.year = year;
+//     this.read = false;
+// };
 
-Book.prototype.toggleRead = function() {
-    if (this.read == true) {
-        this.read = false;
-    } else {
-        this.read = true;
+// Book.prototype.toggleRead = function () {
+//     if (this.read == true) {
+//         this.read = false;
+//     } else {
+//         this.read = true;
+//     };
+// };
+
+class Library {
+    #library = [];
+
+    get contents() {
+        return this.#library;
+    };
+
+    set contents(newContents) {
+        this.#library = newContents;
+    }
+
+    addBook(book) {
+        this.#library.push(book)
     };
 };
+
+class Book {
+    #id = crypto.randomUUID()
+    #read = false;
+
+    constructor(title, author, pages, date) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.year = date;
+    };
+
+    toggleRead() {
+        if (this.#read == true) {
+            this.#read = false;
+        } else {
+            this.#read = true;
+        };
+    };
+
+    get id() {
+        return this.#id;
+    };
+
+    get read() {
+        return this.#read;
+    }
+}
 
 function addBookToLibrary(title, author, pages, date) {
     //create new book from constructor
     let book = new Book(title, author, pages, date);
 
     //add to library, refresh site display to update with new library contents
-    myLibrary.push(book);
+    library.addBook(book);
     displayLibrary();
 };
 
@@ -77,9 +121,11 @@ function displayLibrary() {
         containerDiv.removeChild(containerDiv.children[0]);
     };
 
+    let libraryContents = library.contents;
+
     //creates an entry for each book in the library array
     //then creates elements to display information from each entry
-    myLibrary.forEach((book) => {
+    libraryContents.forEach((book) => {
         let bookElement = document.createElement("div");
         bookElement.classList.add("book");
 
@@ -107,7 +153,7 @@ function displayLibrary() {
         let btnContainer = document.createElement("div");
         btnContainer.classList.add("btnContainer");
 
-         //adds an id to each book display identical to the unique id generated on 
+        //adds an id to each book display identical to the unique id generated on 
         // object creation for each book
         // will allow identification of specific books for manipulation purposes (i.e deletion)
         btnContainer.id = book.id;
@@ -144,7 +190,7 @@ function removeBook(event) {
     let bookID = event.target.parentElement.id;
 
     //filters through library to not include any book matching the selected book id
-    myLibrary = myLibrary.filter((book) => book.id != bookID);
+    library.contents = library.contents.filter((book) => book.id != bookID);
 
     //refreshes the library display to update with book removal
     displayLibrary();
@@ -155,11 +201,11 @@ function readToggle(event) {
     let bookID = event.target.parentElement.id;
 
     //find index of book to modify in library
-    let bookIndex = myLibrary.map(book => book.id).indexOf(bookID);
+    let bookIndex = library.contents.map(book => book.id).indexOf(bookID);
 
-    myLibrary[bookIndex].toggleRead();
+    library.contents[bookIndex].toggleRead();
 
-    if (myLibrary[bookIndex].read == true) {
+    if (library.contents[bookIndex].read == true) {
         event.target.textContent = "Read";
         event.target.dataset.read = "read";
     } else {
@@ -175,10 +221,15 @@ function populateLibrary() {
     let book2 = new Book("The Two Towers", "J. R. R. Tolkien", 352, 1954);
     let book3 = new Book("The Return of the King", "J. R. R. Tolkien", 416, 1955);
 
-    myLibrary.push(book1, book2, book3);
+    library.addBook(book1);
+    library.addBook(book2);
+    library.addBook(book3);
 };
 
 //runs the populate then display function on page load
+
+let library = new Library();
+
 populateLibrary();
 
 displayLibrary();
